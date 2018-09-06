@@ -1,0 +1,32 @@
+function text = double2eng(val, format)
+% function TEXT = DOUBLE2ENG(VAL, FORMAT)
+%   Creates a string with engineering units 'p', 'u' etc
+%   VAL is the value to display and must be real non-vector
+%   FORMAT is a string defining the format
+%       Typical generic format would be '%4.2g%c'
+%       For a capacitor, C = 34.5E-6 
+%               txt = double2eng(34.5e-6, '%4.2g%cF')
+%               txt gets '  34uF'
+%       For a resistor of 6.85Meg you can use
+%       txt = sprintf('%s%c', double2eng(6.85e6, '%4.3g'),937)
+
+if (nargin < 1)
+    val = 245.6e-5;
+    format = '%4.2f';
+end
+
+powers = 'fpnum kMGT';
+power = 1;
+if (val < 1)
+    while (val < 1)
+        val = val *1000;
+        power = power - 1;
+    end
+else if (val > 1000)
+        while (val > 1000)
+            val = val / 1000;
+            power = power + 1;
+        end
+    end
+end
+text = sprintf('%s%c', sprintf(format,val), powers(power+5));
