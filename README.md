@@ -1,5 +1,5 @@
 # MatLab
-function text = double2eng(val, format)
+# function text = double2eng(val, format)
 % function TEXT = DOUBLE2ENG(VAL, FORMAT)
 %   Creates a string with engineering units 'p', 'u' etc
 %   VAL is the value to display and must be real non-vector
